@@ -1,10 +1,14 @@
-<script>
-   let name;
-   let by;
-   let genres;
+<script lang="ts">
+   let name: String;
+   let by: String;
+   let genres: String;
 
    let code = "";
    let scope = "";
+
+   function submit() {
+   
+   }
 
   function resetColor() {
     document.getElementById("artists").style.color =
