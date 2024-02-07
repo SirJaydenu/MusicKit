@@ -8,13 +8,14 @@
 
 <div>
    <header>
-      <p class="header-text">BHSMC</p>
+      <a href="/" class="header-text">BHSMC</a>
       <button on:click={handleClick}>Menu</button>
    </header>
    {#if menuOpen}
       <nav>
-         <a on:click={handleClick} href="/">Home</a>
+         <a on:click={handleClick} href="/add">Add</a>
          <a on:click={handleClick} href="/explore">Explore</a>
+         <a on:click={handleClick} href="/profile">Profile</a>
       </nav>
    {/if}
    <slot/>
@@ -23,7 +24,7 @@
 <style>
    @import url('https://fonts.googleapis.com/css2?family=Fira+Sans&family=Montserrat:wght@700&family=Roboto&family=Unbounded&display=swap');
    
-   header {
+header {
       display: flex;
       justify-content: space-between;
       gap: 1rem;
@@ -75,5 +76,4 @@
 
    button:hover {
       cursor: pointer;
-   }
-</style>
+   }</style>
