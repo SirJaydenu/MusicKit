@@ -38,7 +38,7 @@
 </script>
 
 <div>
-  <h1>Share Music</h1>
+  <h1>SHARE</h1>
   <p class="subtitle">Submit Your Music Recommendations Here</p>
   <div class="selector-container">
     <button id="artists" class="unselected-option" on:click={artistsClick}

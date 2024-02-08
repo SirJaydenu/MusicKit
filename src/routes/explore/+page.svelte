@@ -1,54 +1,32 @@
-<script lang="ts" >
-   interface Artist {
-      name: string,
-      genres: string[],
-   }
+<script lang="ts">
+   import type { PageData } from './$types';
 
-   interface Song {
-      name: string,
-      by: string,
-      genres: string[],
-   }
-
-   interface Album {
-      name: string,
-      by: string,
-      genres: string[],
-   }
+   export let data: PageData;
    
-   let artists: Artist[] = [];
-   artists.push({
-      name: "Example Name",
-      genres: ["example-genre"]
-   });
-
-   let songs: Song[] = [];
-   let albums: Album[] = [];
-
-   let scope= "none";
+   let scope = "";
 
    function resetColor() {
-      document.getElementById("artists").style.color = "rgba(255, 255, 255, 0.87)";
-      document.getElementById("songs").style.color = "rgba(255, 255, 255, 0.87)";
-      document.getElementById("albums").style.color = "rgba(255, 255, 255, 0.87)";
+      document.getElementById("artists")!.style.color = "rgba(255, 255, 255, 0.87)";
+      document.getElementById("songs")!.style.color = "rgba(255, 255, 255, 0.87)";
+      document.getElementById("albums")!.style.color = "rgba(255, 255, 255, 0.87)";
    }
 
    function artistsClick() {
       scope = "artists"
       resetColor();
-      document.getElementById("artists").style.color = "rgba(252, 252, 79, 0.904)";
+      document.getElementById("artists")!.style.color = "rgba(252, 252, 79, 0.904)";
    }
 
    function songsClick() {
       scope = "songs"
       resetColor();
-      document.getElementById("songs").style.color = "rgba(252, 252, 79, 0.904)";
+      document.getElementById("songs")!.style.color = "rgba(252, 252, 79, 0.904)";
    }
 
    function albumsClick() {
       scope = "albums"
       resetColor();
-      document.getElementById("albums").style.color = "rgba(252, 252, 79, 0.904)";
+      document.getElementById("albums")!.style.color = "rgba(252, 252, 79, 0.904)";
    }
 
 </script>
@@ -59,45 +37,37 @@
    <div class="main-container">
       <a href="/add">Add Your Own Music Here</a>
       <div class="selector-container">
-         <button id="artists" class="unselected-option" on:click={artistsClick}>Artists</button>
-         <button id="songs" class="unselected-option" on:click={songsClick}>Songs</button>
-         <button id="albums" class="unselected-option" on:click={albumsClick}>Albums</button>
+         <button id="artists" class="unselected-option" on:click={artistsClick}
+            >Artists</button
+         >
+         <button id="songs" class="unselected-option" on:click={songsClick}
+            >Songs</button
+         >
+         <button id="albums" class="unselected-option" on:click={albumsClick}
+            >Albums</button
+         >
       </div>
       {#if scope === "artists"}
-         {#each artists as artist}
+         {#each data.artists as artist}
             <div class="music-container">
                <p class="title">{artist.name}</p>
-               <p class="describer-text">
-                  Genres: {#each artist.genres as genre} 
-                     {#if genre == artist.genres[artist.genres.length-1]} {genre} 
-                     {:else} {genre}, 
-                  {/if} {/each}</p>
+               <p class="describer-text">{artist.grade}</p>
             </div>
          {/each}
-
       {:else if scope === "songs"}
-         {#each songs as song}
+         {#each data.songs as song}
             <div class="music-container">
                <p class="title">{song.name}</p>
-               <p class="describer-text">{song.by}</p>
-               <p class="describer-text">
-                  Genres: {#each song.genres as genre} 
-                     {#if genre == song.genres[song.genres.length-1]} {genre} 
-                     {:else} {genre}, 
-                  {/if} {/each}</p>
+               <p class="describer-text">{song.artist}</p>
+               <p class="describer-text">{song.grade}</p>
             </div>
          {/each}
-
       {:else if scope === "albums"}
-         {#each albums as album}
+         {#each data.albums as album}
             <div class="music-container">
                <p class="title">{album.name}</p>
-               <p class="describer-text">{album.by}</p>
-               <p class="describer-text">
-                  Genres: {#each album.genres as genre} 
-                     {#if genre == album.genres[album.genres.length-1]} {genre} 
-                     {:else} {genre}, 
-                  {/if} {/each}</p>
+               <p class="describer-text">{album.artist}</p>
+               <p class="describer-text">{album.grade}</p>
             </div>
          {/each}
       {/if}
@@ -106,11 +76,11 @@
 
 <style>
    p {
-      font-family: 'Roboto', sans-serif;
+      font-family: "Roboto", sans-serif;
    }
 
    button {
-      font-family: 'Montserrat', sans-serif;
+      font-family: "Montserrat", sans-serif;
       color: rgba(255, 255, 255, 0.87);
    }
 
@@ -119,13 +89,13 @@
    }
 
    a {
-      font-family: 'Roboto', sans-serif;
-      color:rgba(255, 255, 255, 0.87);
+      font-family: "Roboto", sans-serif;
+      color: rgba(255, 255, 255, 0.87);
       margin-bottom: 1rem;
    }
 
    h1 {
-      font-family: 'Montserrat', sans-serif;
+      font-family: "Montserrat", sans-serif;
       text-align: center;
       font-size: 3rem;
       margin-top: 5rem;
@@ -134,7 +104,7 @@
    .subtitle {
       margin-top: 3rem;
       text-align: center;
-      margin-bottom: .5rem;
+      margin-bottom: 0.5rem;
    }
 
    .selector-container {
