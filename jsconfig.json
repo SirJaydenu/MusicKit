@@ -11,6 +11,17 @@
 		"strict": true,
 		"module": "ES2015",
 		"moduleResolution": "bundler"
+		//  TODO: remove once svelte/svelte#4763 is fixed
+		//  , "outDir": "static"
+
+		// "types": ["vite/client"] // TODO: uncomment when Vite is fixed to
+		// include types for the client entry point
+		//  https://github.com/vitejs/vite/issues/3497/
+		// , "@sveltejs/vite-plugin-svelte/dynamic-import-
+		//  hotreload"],
+		//  "plugins": [{ "name": "typescript-paths" }]
+		//  },
+		
 	}
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias and https://kit.svelte.dev/docs/configuration#files
 	//
