@@ -24,12 +24,7 @@ export const load: PageServerLoad = async (event: ServerLoadEvent) => {
 
    let student;
    if(user!.student == null) {
-      student = await prisma.student.create({
-         data: {
-            grade: Grade.SENIOR,
-            userId: user!.id,
-         }
-      });
+      redirect(307, 'new-user');
    } else {
       student = await prisma.student.findUnique({
          where: {
